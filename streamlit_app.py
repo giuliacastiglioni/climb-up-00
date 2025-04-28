@@ -1,5 +1,7 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
+import json
+import os
 
 # Configurazione pagina
 st.set_page_config(page_title="Parete da Arrampicata", layout="wide")
@@ -128,11 +130,32 @@ elif selected == "Contatti":
         submit_button = st.form_submit_button(label='Invia')
 
         if submit_button:
+            # Creiamo un dizionario con i dati
+            new_contact = {
+                "nome": name,
+                "email": email,
+                "messaggio": message
+            }
+
+            # Controlliamo se esiste già il file JSON
+            if os.path.exists('contatti.json'):
+                with open('contatti.json', 'r', encoding='utf-8') as f:
+                    contacts = json.load(f)
+            else:
+                contacts = []
+
+            # Aggiungiamo il nuovo contatto
+            contacts.append(new_contact)
+
+            # Salviamo il file aggiornato
+            with open('contatti.json', 'w', encoding='utf-8') as f:
+                json.dump(contacts, f, ensure_ascii=False, indent=4)
+
             st.success("✅ Messaggio inviato con successo! Ti contatteremo a breve.")
 
-    st.markdown("""
+    st.markdown(""" 
     ---
-    📧 Email: info@modularwall.com  
+    📧 Email:   
     📱 Telefono: +39 123 456 789
     """)
     st.markdown('</div>', unsafe_allow_html=True)
