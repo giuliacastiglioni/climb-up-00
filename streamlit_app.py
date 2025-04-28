@@ -131,12 +131,11 @@ elif selected == "Contatti":
                 "messaggio": message
             }
 
-            # Controlliamo se esiste già il file JSON
+            contacts = []
             if os.path.exists('contatti.json'):
-                with open('contatti.json', 'r', encoding='utf-8') as f:
-                    contacts = json.load(f)
-            else:
-                contacts = []
+                if os.path.getsize('contatti.json') > 0:
+                    with open('contatti.json', 'r', encoding='utf-8') as f:
+                        contacts = json.load(f)
 
             # Aggiungiamo il nuovo contatto
             contacts.append(new_contact)
@@ -206,12 +205,11 @@ elif selected == "Questionario":
                 }
             }
 
-            # Controlliamo se esiste già il file JSON
+            questionari = []
             if os.path.exists('questionari.json'):
-                with open('questionari.json', 'r', encoding='utf-8') as f:
-                    questionari = json.load(f)
-            else:
-                questionari = []
+                if os.path.getsize('questionari.json') > 0:
+                    with open('questionari.json', 'r', encoding='utf-8') as f:
+                        questionari = json.load(f)
 
             # Aggiungiamo la nuova risposta
             questionari.append(new_response)
