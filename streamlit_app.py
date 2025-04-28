@@ -221,3 +221,44 @@ elif selected == "Questionario":
             st.success("✅ Questionario inviato con successo! Grazie per il tuo tempo.")
 
     st.markdown('</div>', unsafe_allow_html=True)
+
+# --- ADMIN ---
+elif selected == "Admin":
+    st.markdown('<div class="section" style="background-color: #f0f0f0;">', unsafe_allow_html=True)
+    st.title("🔒 Area Admin")
+
+    st.write("Accesso riservato.")
+
+    # Codice personale per l'accesso
+    codice_personale = st.text_input("Inserisci il tuo codice personale:", type="password")
+
+    # Sostituisci 'TUO_CODICE_PERSONALE' con il codice che vuoi usare!
+    CODICE_CORRETTO = "EGMSPOLIVALUE2025"
+
+    if codice_personale == CODICE_CORRETTO:
+        st.success("✅ Accesso consentito!")
+
+        st.header("📋 Questionari Raccolti")
+        if os.path.exists('questionari.json') and os.path.getsize('questionari.json') > 0:
+            with open('questionari.json', 'r', encoding='utf-8') as f:
+                questionari = json.load(f)
+            for idx, q in enumerate(questionari, 1):
+                st.subheader(f"📝 Questionario {idx}")
+                st.write(q)
+        else:
+            st.info("Nessun questionario raccolto.")
+
+        st.header("📬 Contatti Raccolti")
+        if os.path.exists('contatti.json') and os.path.getsize('contatti.json') > 0:
+            with open('contatti.json', 'r', encoding='utf-8') as f:
+                contatti = json.load(f)
+            for idx, c in enumerate(contatti, 1):
+                st.subheader(f"📨 Contatto {idx}")
+                st.write(c)
+        else:
+            st.info("Nessun contatto raccolto.")
+
+    elif codice_personale != "":
+        st.error("❌ Codice errato! Accesso negato.")
+
+    st.markdown('</div>', unsafe_allow_html=True)
