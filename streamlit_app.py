@@ -37,7 +37,7 @@ img {
 with st.sidebar:
     selected = option_menu(
         menu_title="Navigazione",
-        options=["Home", "Galleria", "Video", "Specifiche","Questionario", "Contatti"],
+        options=["Home", "Galleria", "Video", "Specifiche","Questionario", "Contatti","Admin"],
         icons=["house", "camera", "film", "gear","clipboard-check", "envelope"],
         menu_icon="cast",
         default_index=0,
