@@ -148,6 +148,7 @@ elif selected == "Contatti":
 
     st.markdown(""" 
     ---
+    Per eventuali domande o dubbi contattateci qui!
     📧 Email:  stefano4.stucchi@mail.polimi.it 
         """)
     st.markdown('</div>', unsafe_allow_html=True)
